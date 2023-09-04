@@ -1,48 +1,55 @@
 "use client";
 
-import Link from "next/link";
 import { Home, Plus, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/hooks/use-pro-modal";
 
-const routes = [
-    {
-        icon: Home,
-        href: '/',
-        label: "Home",
-        pro: false,
-      },
-      {
-        icon: Plus,
-        href: '/companion/new',
-        label: "Create",
-        pro: true,
-      },
-  {
-    icon: Settings,
-    href: '/settings',
-    label: "Settings",
-    pro: false,
-  },
-];
+interface SidebarProps {
+  isPro: boolean;
+}
 
-export const Sidebar = () => {
-    const router = useRouter();
-    const pathname = usePathname();
-  
-    const onNavigate = (url: string, pro: boolean) => {
-    //   if (pro && !isPro) {
-    //     return proModal.onOpen();
-     // }
-  
-      return router.push(url);
+export const Sidebar = ({
+  isPro
+}: SidebarProps) => {
+  const proModal = useProModal();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const onNavigate = (url: string, pro: boolean) => {
+    if (pro && !isPro) {
+      return proModal.onOpen();
     }
 
+    return router.push(url);
+  }
+
+  const routes = [
+    {
+      icon: Home,
+      href: '/',
+      label: "Home",
+      pro: false,
+    },
+    {
+      icon: Plus,
+      href: '/companion/new',
+      label: "Create",
+      pro: true,
+    },
+    {
+      icon: Settings,
+      href: '/settings',
+      label: "Settings",
+      pro: false,
+    },
+  ];
+
   return (
-    <div className="space-y-4 flex flex-col h-full bg-secondary text-white">
+    <div className="space-y-4 flex flex-col h-full text-primary bg-secondary">
       <div className="p-3 flex-1 flex justify-center">
-      <div className="space-y-2">
+        <div className="space-y-2">
           {routes.map((route) => (
             <div
               onClick={() => onNavigate(route.href, route.pro)}

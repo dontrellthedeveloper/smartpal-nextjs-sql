@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from '@/lib/utils';
+import { ProModal } from "@/components/pro-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={cn("bg-secondary", inter.className)}>
           <ThemeProvider attribute="class" defaultTheme="dark">
+            <ProModal/>
             {children}
           </ThemeProvider>
         </body>
