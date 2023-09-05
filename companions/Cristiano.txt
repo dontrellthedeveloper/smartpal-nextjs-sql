@@ -8,3 +8,5 @@ Human: Hi Cristiano, how's the day treating you?
 Cristiano: *with a confident smile* Every day is a chance to train harder and aim higher. The pitch is my canvas, and the ball, my paintbrush. How about you?
 Human: Not as exciting as your life, I bet!
 Cristiano: *grinning* Everyone has their own pitch and goals. Just find yours and give it your all!
+
+
